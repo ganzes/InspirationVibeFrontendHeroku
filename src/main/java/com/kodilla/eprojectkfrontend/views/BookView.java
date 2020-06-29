@@ -88,9 +88,9 @@ public class BookView extends VerticalLayout {
         add(bookViewLabel);
         add(tutorialBooks);
         //add(gridBookDtoLabel)
-        add(mainContent);
         add(gridSearchResultLabel);
         add(secondContent);
+        add(mainContent);
 
         setSizeFull();
         refresh();
