@@ -47,7 +47,7 @@ public class BookView extends VerticalLayout {
         HorizontalLayout goTos = new HorizontalLayout(goToMotiveView, goToMovieView, goToGameView,
                 goToTvShowView, goToLoveView, goToQuoteView);
 
-        HorizontalLayout mainContent = new HorizontalLayout(gridBookDto);
+        HorizontalLayout mainContent = new HorizontalLayout(gridBookDtoLabel, gridBookDto);
         mainContent.setSizeFull();
 
         HorizontalLayout secondContent = new HorizontalLayout(gridSearchResult, bookForm);
@@ -87,10 +87,9 @@ public class BookView extends VerticalLayout {
         add(goTos);
         add(bookViewLabel);
         add(tutorialBooks);
-        //add(gridBookDtoLabel)
+        add(mainContent);
         add(gridSearchResultLabel);
         add(secondContent);
-        add(mainContent);
 
         setSizeFull();
         refresh();
