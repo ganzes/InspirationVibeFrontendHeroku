@@ -22,7 +22,7 @@ public class BookService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public List<BookDto> getAllBook() throws HttpServerErrorException {
-        BookDto[] allBookList = restTemplate.getForObject("http://localhost:8080/eprojectk/book/getBooks", BookDto[].class);
+        BookDto[] allBookList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/book/getBooks", BookDto[].class);
 
         assert allBookList != null;
 
@@ -31,7 +31,7 @@ public class BookService {
 
     public void createBook(final BookDto bookDto) throws HttpServerErrorException {
         try {
-            URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/book/createBook")
+            URI url = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/book/createBook")
                     .build().encode().toUri();
             restTemplate.postForObject(url, bookDto, BookDto.class);
         } catch (HttpClientErrorException e) {
@@ -40,23 +40,23 @@ public class BookService {
     }
 
     public void deleteBook(final Long bookID) throws HttpServerErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/book/deleteBook?bookID=" + bookID);
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/book/deleteBook?bookID=" + bookID);
     }
 
     public void updateBook(final BookDto bookDto) throws HttpServerErrorException {
         try {
-            restTemplate.put("http://localhost:8080/eprojectk/book/updateBook", bookDto, BookDto.class);
+            restTemplate.put("https://inspirationvibebackend.herokuapp.com/eprojectk/book/updateBook", bookDto, BookDto.class);
         } catch (HttpClientErrorException e) {
             LOGGER.warn("User out of bounds! " + e);
         }
     }
 
     public void deleteAllBooks() throws HttpClientErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/book/deleteAllBooks");
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/book/deleteAllBooks");
     }
 
     public List<BookDto> findBookByAuthor(final String author) throws HttpServerErrorException {
-        BookDto[] allBookList = restTemplate.getForObject("http://localhost:8080/eprojectk/book/getBookByAuthor?bookAuthor=" + author, BookDto[].class);
+        BookDto[] allBookList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/book/getBookByAuthor?bookAuthor=" + author, BookDto[].class);
 
         assert allBookList != null;
 
@@ -64,13 +64,13 @@ public class BookService {
     }
 
     public List<BookDto> findBookByRating(final String bookRating) throws HttpServerErrorException {
-        BookDto[] allBookList = restTemplate.getForObject("http://localhost:8080/eprojectk/book/getBookByRating?bookRating=" + bookRating, BookDto[].class);
+        BookDto[] allBookList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/book/getBookByRating?bookRating=" + bookRating, BookDto[].class);
 
         assert allBookList != null;
         return new ArrayList<>(Arrays.asList(allBookList));
     }
 
     public Long countAllBooks() throws NullPointerException {
-        return restTemplate.getForObject("http://localhost:8080/eprojectk/book/countAllBooks", Long.class);
+        return restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/book/countAllBooks", Long.class);
     }
 }
