@@ -54,6 +54,8 @@ public class MovieView extends VerticalLayout {
 
         gridMovieDto.setColumns("movieTitle", "movieDirector", "movieRating");
         gridMovieDto.setSizeFull();
+        gridMovieDto.setHeightByRows(true);
+        gridMovieDto.setMaxHeight("200px");
         gridMovieDto.asSingleSelect().addValueChangeListener(event -> check());
 
         gridSearchResult.setColumns("movieTitle", "movieDirector", "movieRating");

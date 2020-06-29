@@ -55,6 +55,8 @@ public class GameView extends VerticalLayout {
 
         gridGameDto.setColumns("gameTitle", "gameDeveloper", "gameRating");
         gridGameDto.setSizeFull();
+        gridGameDto.setHeightByRows(true);
+        gridGameDto.setMaxHeight("200px");
         gridGameDto.asSingleSelect().addValueChangeListener(event -> check());
 
         gridSearchResult.setColumns("gameTitle", "gameDeveloper", "gameRating");

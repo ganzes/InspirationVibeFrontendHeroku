@@ -55,6 +55,8 @@ public class BookView extends VerticalLayout {
 
         gridBookDto.setColumns("bookTitle", "bookAuthor", "bookRating");
         gridBookDto.setSizeFull();
+        gridBookDto.setHeightByRows(true);
+        gridBookDto.setMaxHeight("200px");
         gridBookDto.asSingleSelect().addValueChangeListener(event -> check());
 
         gridSearchResult.setColumns("bookTitle", "bookAuthor", "bookRating");

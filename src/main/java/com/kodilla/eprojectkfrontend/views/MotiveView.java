@@ -54,6 +54,8 @@ public class MotiveView extends VerticalLayout {
 
         gridMotiveDto.setColumns("motiveText", "motiveAuthor", "motiveRating");
         gridMotiveDto.setSizeFull();
+        gridMotiveDto.setHeightByRows(true);
+        gridMotiveDto.setMaxHeight("200px");
         gridMotiveDto.asSingleSelect().addValueChangeListener(event -> check());
 
         gridSearchResult.setColumns("motiveText", "motiveAuthor", "motiveRating");

@@ -54,6 +54,8 @@ public class TvShowView extends VerticalLayout {
 
         gridTvShowDto.setColumns("tvShowTitle", "tvShowCategory", "tvShowRating");
         gridTvShowDto.setSizeFull();
+        gridTvShowDto.setHeightByRows(true);
+        gridTvShowDto.setMaxHeight("200px");
         gridTvShowDto.asSingleSelect().addValueChangeListener(event -> check());
 
         gridSearchResult.setColumns("tvShowTitle", "tvShowCategory", "tvShowRating");
