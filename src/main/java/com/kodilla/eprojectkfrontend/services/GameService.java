@@ -22,7 +22,7 @@ public class GameService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public List<GameDto> getAllGame() throws HttpServerErrorException {
-        GameDto[] allGameList = restTemplate.getForObject("http://localhost:8080/eprojectk/game/getGames", GameDto[].class);
+        GameDto[] allGameList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/game/getGames", GameDto[].class);
 
         assert allGameList != null;
 
@@ -31,7 +31,7 @@ public class GameService {
 
     public void createGame(final GameDto gameDto) throws HttpServerErrorException {
         try {
-            URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/game/createGame")
+            URI url = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/game/createGame")
                     .build().encode().toUri();
             restTemplate.postForObject(url, gameDto, GameDto.class);
         } catch (HttpClientErrorException e) {
@@ -40,23 +40,23 @@ public class GameService {
     }
 
     public void deleteGame(final Long gameID) throws HttpClientErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/game/deleteGame?gameID=" + gameID);
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/game/deleteGame?gameID=" + gameID);
     }
 
     public void updateGame(final GameDto gameDto) throws HttpServerErrorException {
         try {
-            restTemplate.put("http://localhost:8080/eprojectk/game/updateGame", gameDto, GameDto.class);
+            restTemplate.put("https://inspirationvibebackend.herokuapp.com/eprojectk/game/updateGame", gameDto, GameDto.class);
         } catch (HttpClientErrorException e) {
             LOGGER.warn("User out of bounds! " + e);
         }
     }
 
     public void deleteAllGames() throws HttpServerErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/game/deleteAllGames");
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/game/deleteAllGames");
     }
 
     public List<GameDto> findGameByDeveloper(final String author) throws HttpServerErrorException {
-        GameDto[] allGameList = restTemplate.getForObject("http://localhost:8080/eprojectk/game/getGameByDeveloper?gameDeveloper=" + author, GameDto[].class);
+        GameDto[] allGameList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/game/getGameByDeveloper?gameDeveloper=" + author, GameDto[].class);
 
         assert allGameList != null;
 
@@ -64,13 +64,13 @@ public class GameService {
     }
 
     public List<GameDto> findGameByRating(final String gameRating) throws HttpServerErrorException {
-        GameDto[] allGameList = restTemplate.getForObject("http://localhost:8080/eprojectk/game/getGameByRating?gameRating=" + gameRating, GameDto[].class);
+        GameDto[] allGameList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/game/getGameByRating?gameRating=" + gameRating, GameDto[].class);
 
         assert allGameList != null;
         return new ArrayList<>(Arrays.asList(allGameList));
     }
 
     public Long countAllGames() throws NullPointerException {
-        return restTemplate.getForObject("http://localhost:8080/eprojectk/game/countAllGames", Long.class);
+        return restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/game/countAllGames", Long.class);
     }
 }

@@ -25,7 +25,7 @@ public class QuotesService {
 
     public QuotesDto getQuoteByKeyword(final QuotesDto quotesDto) throws HttpServerErrorException {
         try {
-            URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/quotes/?keyword=" + quotesDto.getKeywords())
+            URI uri = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/quotes/?keyword=" + quotesDto.getKeywords())
                     .build().encode().toUri();
 
             return restTemplate.getForObject(uri, QuotesDto.class);
@@ -37,7 +37,7 @@ public class QuotesService {
 
     public QuotesDto getQuoteByAuthor(final QuotesDto quotesDto) throws HttpServerErrorException {
         try {
-            URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/quotes/byAuthor?author=" + quotesDto.getAuthor())
+            URI uri = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/quotes/byAuthor?author=" + quotesDto.getAuthor())
                     .build().encode().toUri();
 
             return restTemplate.getForObject(uri, QuotesDto.class);
@@ -48,7 +48,7 @@ public class QuotesService {
     }
 
     public QuotesDto getRandomQuote() throws HttpServerErrorException {
-        URI uri = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/quotes/getRandom")
+        URI uri = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/quotes/getRandom")
                 .build().encode().toUri();
         return restTemplate.getForObject(uri, QuotesDto.class);
     }

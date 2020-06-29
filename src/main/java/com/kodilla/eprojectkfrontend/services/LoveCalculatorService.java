@@ -14,7 +14,7 @@ public class LoveCalculatorService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public LoveCalculatorDto getPercentage(final LoveCalculatorDto loveCalculatorDto) throws HttpServerErrorException {
-        URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/lc/?fname=" + loveCalculatorDto.getFname() + "&sname=" + loveCalculatorDto.getSname())
+        URI url = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/lc/?fname=" + loveCalculatorDto.getFname() + "&sname=" + loveCalculatorDto.getSname())
                 .build().encode().toUri();
         return restTemplate.getForObject(url, LoveCalculatorDto.class);
     }

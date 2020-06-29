@@ -22,14 +22,14 @@ public class TvShowService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public List<TvShowDto> getAllTvShow() throws HttpServerErrorException {
-        TvShowDto[] allTvShowList = restTemplate.getForObject("http://localhost:8080/eprojectk/tvShow/getTvShows", TvShowDto[].class);
+        TvShowDto[] allTvShowList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/getTvShows", TvShowDto[].class);
 
         return new ArrayList<>(Arrays.asList(allTvShowList));
     }
 
     public void createTvShow(final TvShowDto tvShowDto) throws HttpServerErrorException {
         try {
-            URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/tvShow/createTvShow")
+            URI url = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/createTvShow")
                     .build().encode().toUri();
             restTemplate.postForObject(url, tvShowDto, TvShowDto.class);
         } catch (HttpClientErrorException e) {
@@ -38,23 +38,23 @@ public class TvShowService {
     }
 
     public void deleteTvShow(final Long tvShowID) throws HttpClientErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/tvShow/deleteTvShow?tvShowID=" + tvShowID);
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/deleteTvShow?tvShowID=" + tvShowID);
     }
 
     public void updateTvShow(final TvShowDto tvShowDto) throws HttpServerErrorException {
         try {
-            restTemplate.put("http://localhost:8080/eprojectk/tvShow/updateTvShow", tvShowDto, TvShowDto.class);
+            restTemplate.put("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/updateTvShow", tvShowDto, TvShowDto.class);
         } catch (HttpClientErrorException e) {
             LOGGER.warn("User out of bounds! " + e);
         }
     }
 
     public void deleteAllTvShows() throws HttpServerErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/tvShow/deleteAllTvShows");
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/deleteAllTvShows");
     }
 
     public List<TvShowDto> findTvShowByCategory(final String author) throws HttpServerErrorException {
-        TvShowDto[] allTvShowList = restTemplate.getForObject("http://localhost:8080/eprojectk/tvShow/getTvShowByCategory?tvShowCategory=" + author, TvShowDto[].class);
+        TvShowDto[] allTvShowList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/getTvShowByCategory?tvShowCategory=" + author, TvShowDto[].class);
 
         assert allTvShowList != null;
 
@@ -62,7 +62,7 @@ public class TvShowService {
     }
 
     public List<TvShowDto> findTvShowByRating(final String tvShowRating) throws HttpServerErrorException {
-        TvShowDto[] allTvShowList = restTemplate.getForObject("http://localhost:8080/eprojectk/tvShow/getTvShowByRating?tvShowRating=" + tvShowRating, TvShowDto[].class);
+        TvShowDto[] allTvShowList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/getTvShowByRating?tvShowRating=" + tvShowRating, TvShowDto[].class);
 
         assert allTvShowList != null;
 
@@ -70,6 +70,6 @@ public class TvShowService {
     }
 
     public Long countAllTvShows() throws NullPointerException {
-        return restTemplate.getForObject("http://localhost:8080/eprojectk/tvShow/countAllTvShows", Long.class);
+        return restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/tvShow/countAllTvShows", Long.class);
     }
 }

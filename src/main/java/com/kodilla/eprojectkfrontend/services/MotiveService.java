@@ -22,14 +22,14 @@ public class MotiveService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public List<MotiveDto> getAllMotive() throws HttpServerErrorException {
-        MotiveDto[] allMotiveList = restTemplate.getForObject("http://localhost:8080/eprojectk/motive/getMotives", MotiveDto[].class);
+        MotiveDto[] allMotiveList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/getMotives", MotiveDto[].class);
 
         return new ArrayList<>(Arrays.asList(allMotiveList));
     }
 
     public void createMotive(final MotiveDto motiveDto) throws HttpServerErrorException {
         try {
-            URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/motive/createMotive")
+            URI url = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/createMotive")
                     .build().encode().toUri();
             restTemplate.postForObject(url, motiveDto, MotiveDto.class);
         } catch (HttpClientErrorException e) {
@@ -38,43 +38,43 @@ public class MotiveService {
     }
 
     public void deleteMotive(final Long motiveID) throws HttpClientErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/motive/deleteMotive?motiveID=" + motiveID);
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/deleteMotive?motiveID=" + motiveID);
     }
 
     public void updateMotive(final MotiveDto motiveDto) throws HttpServerErrorException {
         try {
-            restTemplate.put("http://localhost:8080/eprojectk/motive/updateMotive", motiveDto, MotiveDto.class);
+            restTemplate.put("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/updateMotive", motiveDto, MotiveDto.class);
         } catch (HttpClientErrorException e) {
             LOGGER.warn("User out of bounds! " + e);
         }
     }
 
     public void deleteAllMotives() {
-        restTemplate.delete("http://localhost:8080/eprojectk/motive/deleteAllMotives");
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/deleteAllMotives");
     }
 
     public List<MotiveDto> findMotiveByAuthor(final String author) throws HttpServerErrorException {
-        MotiveDto[] allMotiveList = restTemplate.getForObject("http://localhost:8080/eprojectk/motive/getMotiveByAuthor?motiveAuthor=" + author, MotiveDto[].class);
+        MotiveDto[] allMotiveList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/getMotiveByAuthor?motiveAuthor=" + author, MotiveDto[].class);
 
         assert allMotiveList != null;
         return new ArrayList<>(Arrays.asList(allMotiveList));
     }
 
     public List<MotiveDto> findMotiveByRating(final String motiveRating) throws HttpServerErrorException {
-        MotiveDto[] allMotiveList = restTemplate.getForObject("http://localhost:8080/eprojectk/motive/getMotiveByRating?motiveRating=" + motiveRating, MotiveDto[].class);
+        MotiveDto[] allMotiveList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/getMotiveByRating?motiveRating=" + motiveRating, MotiveDto[].class);
 
         assert allMotiveList != null;
         return new ArrayList<>(Arrays.asList(allMotiveList));
     }
 
     public List<MotiveDto> getMotivesFacade() throws HttpServerErrorException {
-        MotiveDto[] allMotiveList = restTemplate.getForObject("http://localhost:8080/eprojectk/motive/getMotivesFacade", MotiveDto[].class);
+        MotiveDto[] allMotiveList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/getMotivesFacade", MotiveDto[].class);
 
         assert allMotiveList != null;
         return new ArrayList<>(Arrays.asList(allMotiveList));
     }
 
     public Long countAllMotives() throws NullPointerException {
-        return restTemplate.getForObject("http://localhost:8080/eprojectk/motive/countAllMotives", Long.class);
+        return restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/motive/countAllMotives", Long.class);
     }
 }

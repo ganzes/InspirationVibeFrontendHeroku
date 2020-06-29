@@ -22,7 +22,7 @@ public class MovieService {
     private RestTemplate restTemplate = new RestTemplate();
 
     public List<MovieDto> getAllMovie() throws HttpServerErrorException {
-        MovieDto[] allMovieList = restTemplate.getForObject("http://localhost:8080/eprojectk/movie/getMovies", MovieDto[].class);
+        MovieDto[] allMovieList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/getMovies", MovieDto[].class);
 
         assert allMovieList != null;
 
@@ -31,7 +31,7 @@ public class MovieService {
 
     public void createMovie(final MovieDto movieDto) throws HttpServerErrorException {
         try {
-            URI url = UriComponentsBuilder.fromHttpUrl("http://localhost:8080/eprojectk/movie/createMovie")
+            URI url = UriComponentsBuilder.fromHttpUrl("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/createMovie")
                     .build().encode().toUri();
             restTemplate.postForObject(url, movieDto, MovieDto.class);
         } catch (HttpClientErrorException e) {
@@ -40,36 +40,36 @@ public class MovieService {
     }
 
     public void deleteMovie(final Long movieID) throws HttpClientErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/movie/deleteMovie?movieID=" + movieID);
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/deleteMovie?movieID=" + movieID);
     }
 
     public void updateMovie(final MovieDto movieDto) throws HttpServerErrorException {
         try {
-            restTemplate.put("http://localhost:8080/eprojectk/movie/updateMovie", movieDto, MovieDto.class);
+            restTemplate.put("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/updateMovie", movieDto, MovieDto.class);
         } catch (HttpClientErrorException e) {
             LOGGER.warn("User out of bounds! " + e);
         }
     }
 
     public void deleteAllMovies() throws HttpServerErrorException {
-        restTemplate.delete("http://localhost:8080/eprojectk/movie/deleteAllMovies");
+        restTemplate.delete("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/deleteAllMovies");
     }
 
     public List<MovieDto> findMovieByDirector(final String author) throws HttpServerErrorException {
-        MovieDto[] allMovieList = restTemplate.getForObject("http://localhost:8080/eprojectk/movie/getMovieByDirector?movieDirector=" + author, MovieDto[].class);
+        MovieDto[] allMovieList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/getMovieByDirector?movieDirector=" + author, MovieDto[].class);
 
         assert allMovieList != null;
         return new ArrayList<>(Arrays.asList(allMovieList));
     }
 
     public List<MovieDto> findMovieByRating(final String movieRating) throws HttpServerErrorException {
-        MovieDto[] allMovieList = restTemplate.getForObject("http://localhost:8080/eprojectk/movie/getMovieByRating?movieRating=" + movieRating, MovieDto[].class);
+        MovieDto[] allMovieList = restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/getMovieByRating?movieRating=" + movieRating, MovieDto[].class);
 
         assert allMovieList != null;
         return new ArrayList<>(Arrays.asList(allMovieList));
     }
 
     public Long countAllMovies() throws NullPointerException {
-        return restTemplate.getForObject("http://localhost:8080/eprojectk/movie/countAllMovies", Long.class);
+        return restTemplate.getForObject("https://inspirationvibebackend.herokuapp.com/eprojectk/movie/countAllMovies", Long.class);
     }
 }
